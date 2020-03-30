@@ -1779,10 +1779,8 @@ void init_config_default(void)
   ui.vertical_order[0][2] = 3; 
   ui.vertical_order[0][3] = 0; 
   ui.vertical_order[0][4] = 4;
-  ui.vertical_order[1][0] = 2;
-  ui.vertical_order[1][1] = 3;
-  ui.vertical_order[1][2] = 0;
-  ui.vertical_order[1][3] = ui.vertical_order[1][4] = -1;
+  ui.vertical_order[1][0] = 0;
+  ui.vertical_order[1][1] = ui.vertical_order[1][2] = ui.vertical_order[1][3] = ui.vertical_order[1][4] = -1;
 
   ui.toolno[0] = ui.startuptool = TOOL_PEN;
   for (i=1; i<=NUM_BUTTONS; i++) {
