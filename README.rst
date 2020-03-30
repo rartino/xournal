@@ -19,4 +19,16 @@ This fork contains the following changes:
     
 - Change of the dated-looking pen cursor into a normal pointer arrow.
 
-  
+Installation on Ubuntu
+----------------------
+
+* sudo apt build-dep xournal
+* ./autogen.sh
+* make
+
+Resulting binary in: `src/xournal`
+
+
+
+
+
