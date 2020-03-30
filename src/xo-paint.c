@@ -58,7 +58,7 @@ GdkCursor *make_pen_cursor(guint color_rgba)
   guchar col[4], *pixels;
 
   if (ui.pen_cursor == TRUE) {  
-    return gdk_cursor_new(GDK_PENCIL);
+    return gdk_cursor_new(GDK_ARROW);
   }
   
   if (ui.pen_cursor_pix == NULL) {

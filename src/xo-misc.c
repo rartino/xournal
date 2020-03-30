@@ -2231,6 +2231,50 @@ void allow_all_accels(void)
       "can-activate-accel", G_CALLBACK(can_accel), NULL);
   g_signal_connect((gpointer) GET_COMPONENT("toolsReco"),
       "can-activate-accel", G_CALLBACK(can_accel), NULL);
+  g_signal_connect((gpointer) GET_COMPONENT("colorBlack"), 
+      "can-activate-accel", G_CALLBACK(can_accel), NULL);
+  g_signal_connect((gpointer) GET_COMPONENT("colorBlue"), 
+      "can-activate-accel", G_CALLBACK(can_accel), NULL);
+  g_signal_connect((gpointer) GET_COMPONENT("colorRed"), 
+      "can-activate-accel", G_CALLBACK(can_accel), NULL);
+  g_signal_connect((gpointer) GET_COMPONENT("colorGreen"), 
+      "can-activate-accel", G_CALLBACK(can_accel), NULL);
+  g_signal_connect((gpointer) GET_COMPONENT("colorGray"), 
+      "can-activate-accel", G_CALLBACK(can_accel), NULL);
+
+  g_signal_connect((gpointer) GET_COMPONENT("colorLightBlue"), 
+      "can-activate-accel", G_CALLBACK(can_accel), NULL);
+  g_signal_connect((gpointer) GET_COMPONENT("colorLightGreen"), 
+      "can-activate-accel", G_CALLBACK(can_accel), NULL);
+  g_signal_connect((gpointer) GET_COMPONENT("colorMagenta"), 
+      "can-activate-accel", G_CALLBACK(can_accel), NULL);
+  g_signal_connect((gpointer) GET_COMPONENT("colorOrange"), 
+      "can-activate-accel", G_CALLBACK(can_accel), NULL);        
+  g_signal_connect((gpointer) GET_COMPONENT("colorYellow"), 
+      "can-activate-accel", G_CALLBACK(can_accel), NULL);
+  g_signal_connect((gpointer) GET_COMPONENT("colorWhite"), 
+      "can-activate-accel", G_CALLBACK(can_accel), NULL);            
+
+  g_signal_connect((gpointer) GET_COMPONENT("viewSetZoom"), 
+      "can-activate-accel", G_CALLBACK(can_accel), NULL);
+
+  g_signal_connect((gpointer) GET_COMPONENT("journalNewPageAfter"), 
+      "can-activate-accel", G_CALLBACK(can_accel), NULL);
+  g_signal_connect((gpointer) GET_COMPONENT("journalDeletePage"), 
+      "can-activate-accel", G_CALLBACK(can_accel), NULL);
+  g_signal_connect((gpointer) GET_COMPONENT("journalDeleteLayer"), 
+      "can-activate-accel", G_CALLBACK(can_accel), NULL);    
+
+  g_signal_connect((gpointer) GET_COMPONENT("penthicknessVeryFine"), 
+      "can-activate-accel", G_CALLBACK(can_accel), NULL);
+  g_signal_connect((gpointer) GET_COMPONENT("penthicknessFine"), 
+      "can-activate-accel", G_CALLBACK(can_accel), NULL);  
+  g_signal_connect((gpointer) GET_COMPONENT("penthicknessMedium"), 
+      "can-activate-accel", G_CALLBACK(can_accel), NULL);
+  g_signal_connect((gpointer) GET_COMPONENT("penthicknessThick"), 
+      "can-activate-accel", G_CALLBACK(can_accel), NULL);
+  g_signal_connect((gpointer) GET_COMPONENT("penthicknessVeryThick"), 
+      "can-activate-accel", G_CALLBACK(can_accel), NULL);  
 }
 
 void add_scroll_bindings(void)
