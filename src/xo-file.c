@@ -1727,7 +1727,7 @@ void init_config_default(void)
   ui.default_page.bg->type = BG_SOLID;
   ui.default_page.bg->color_no = COLOR_WHITE;
   ui.default_page.bg->color_rgba = predef_bgcolors_rgba[COLOR_WHITE];
-  ui.default_page.bg->ruling = RULING_LINED;
+  ui.default_page.bg->ruling = RULING_NONE;
   ui.view_continuous = VIEW_MODE_CONTINUOUS;
   ui.allow_xinput = TRUE;
   ui.discard_corepointer = FALSE;
@@ -1756,7 +1756,7 @@ void init_config_default(void)
   ui.default_image = NULL;
   ui.default_font_name = g_strdup(DEFAULT_FONT);
   ui.default_font_size = DEFAULT_FONT_SIZE;
-  ui.pressure_sensitivity = FALSE;
+  ui.pressure_sensitivity = TRUE;
   ui.width_minimum_multiplier = 0.0;
   ui.width_maximum_multiplier = 1.25;
   ui.button_switch_mapping = FALSE;
@@ -1810,7 +1810,7 @@ void init_config_default(void)
   PDFTOPPM_PRINTING_DPI = 150;
   
   ui.hiliter_opacity = 0.5;
-  ui.pen_cursor = FALSE;
+  ui.pen_cursor = TRUE;
   
 #if GTK_CHECK_VERSION(2,10,0)
   ui.print_settings = NULL;
