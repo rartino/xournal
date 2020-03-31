@@ -1,8 +1,8 @@
-==========================================================================
-This is a testing repository for presentation-oriented features in Xournal
-==========================================================================
+=================================================================
+This is forked version of Xournal adapted for doing presentations
+=================================================================
 
-Forked from Daniel German's repo to add patches to aid using Xournal for presentations.
+Forked from Daniel German's repo to produe a version of Xournal better adapted for doing presentations showing pdf files where one dynamically draws on them. (Preferably with some hardware pen solution.)
 
 The official repository of Xournal is hosted at: http://xournal.sourceforge.net
 
@@ -12,7 +12,7 @@ This fork contains the following changes:
   * Fullscreen mode
   * Single page view
   * Resizes canvas to max that fits both height and width
-  * Pre-renders all pages (note: makes drawing stutter for a while when activating presentation view, but eliminates wait time when changing pages.)
+  * Upon activating presentation mode, all pages are pre-rendered. This makes drawing stutter for a while, but once done, all wait time when changing pages is eliminated.
 
 - A number of keyboard shortcuts have been added for changing colors and other featurs useful for presentations running in fullscreen:
 
