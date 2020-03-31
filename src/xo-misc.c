@@ -1611,6 +1611,10 @@ void update_page_stuff(void)
 
   gtk_widget_set_sensitive(GET_COMPONENT("editPaste"), ui.cur_layer!=NULL);
   gtk_widget_set_sensitive(GET_COMPONENT("buttonPaste"), ui.cur_layer!=NULL);
+
+  if (ui.present) {
+    zoom_fit_to_screen();
+  }  
 }
 
 void update_toolbar_and_menu(void)
@@ -2193,6 +2197,8 @@ void allow_all_accels(void)
       "can-activate-accel", G_CALLBACK(can_accel), NULL);
   g_signal_connect((gpointer) GET_COMPONENT("viewFullscreen"),
       "can-activate-accel", G_CALLBACK(can_accel), NULL);
+  g_signal_connect((gpointer) GET_COMPONENT("viewPresent"),
+      "can-activate-accel", G_CALLBACK(can_accel), NULL);  
   g_signal_connect((gpointer) GET_COMPONENT("viewZoomIn"),
       "can-activate-accel", G_CALLBACK(can_accel), NULL);
   g_signal_connect((gpointer) GET_COMPONENT("viewZoomOut"),
@@ -2349,6 +2355,28 @@ void hide_unimplemented(void)
 #endif
 }  
 
+void zoom_fit_to_screen() {
+  double zoom_percent_height, zoom_percent_width, new_zoom;
+
+  /* Set zoom so that pdf fills screen */
+  zoom_percent_height = (GTK_WIDGET(canvas))->allocation.height/ui.cur_page->height;
+  zoom_percent_width = (GTK_WIDGET(canvas))->allocation.width/ui.cur_page->width;
+
+  if(zoom_percent_height>zoom_percent_width) {
+    new_zoom = zoom_percent_width;
+  } else {
+    new_zoom = zoom_percent_height;    
+  }
+  
+  if (new_zoom != ui.zoom) {
+    ui.zoom = new_zoom;
+    gnome_canvas_set_pixels_per_unit(canvas, ui.zoom);
+    rescale_text_items();
+    rescale_bg_pixmaps();
+    rescale_images();
+  }
+}
+
 // toggle fullscreen mode
 void do_fullscreen(gboolean active)
 {
@@ -2377,7 +2405,46 @@ void do_fullscreen(gboolean active)
   }
 
   update_vbox_order(ui.vertical_order[ui.fullscreen?1:0]);
+
 }
+
+void do_present(gboolean active)
+{
+  end_text();
+  ui.present = active;
+  gtk_check_menu_item_set_active(
+    GTK_CHECK_MENU_ITEM(GET_COMPONENT("viewPresent")), ui.present);
+  gtk_toggle_tool_button_set_active(
+    GTK_TOGGLE_TOOL_BUTTON(GET_COMPONENT("buttonPresent")), ui.present);
+
+  if (ui.present) {
+#ifdef WIN32
+    gtk_window_get_size(GTK_WINDOW(winMain), &ui.pre_fullscreen_width, &ui.pre_fullscreen_height);
+    gtk_widget_set_size_request(GTK_WIDGET(winMain), gdk_screen_width(),
+                                                     gdk_screen_height());
+#endif
+    gtk_window_fullscreen(GTK_WINDOW(winMain));
+  }
+  else {
+#ifdef WIN32
+    gtk_widget_set_size_request(GTK_WIDGET(winMain), -1, -1);
+    gtk_window_resize(GTK_WINDOW(winMain), ui.pre_fullscreen_width,
+                                           ui.pre_fullscreen_height);
+#endif
+    gtk_window_unfullscreen(GTK_WINDOW(winMain));
+  }
+
+  update_vbox_order(ui.vertical_order[ui.present?1:0]);
+
+  if (ui.present) {
+    /* Switch to single page */
+    do_view_modeswitch(VIEW_MODE_ONE_PAGE);
+    //zoom_fit_to_screen();
+    gtk_timeout_add (100, on_presentation_starts, NULL);
+  }
+  
+}
+
 
 /* attempt to work around GTK+ 2.16/2.17 bugs where random interface
    elements receive XInput events that they can't handle properly    */

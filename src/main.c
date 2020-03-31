@@ -127,6 +127,10 @@ void init_stuff (int argc, char *argv[])
   // initialize various interface elements
   
   gtk_window_set_default_size(GTK_WINDOW (winMain), ui.window_default_width, ui.window_default_height);
+
+  //g_signal_connect(G_OBJECT(winMain), "window-state-event",
+  //      G_CALLBACK(on_window_state_change), NULL);
+  
   if (ui.maximize_at_start) gtk_window_maximize(GTK_WINDOW (winMain));
   update_toolbar_and_menu();
   update_font_button();

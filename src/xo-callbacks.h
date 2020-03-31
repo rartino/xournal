@@ -502,6 +502,10 @@ on_viewFullscreen_activate             (GtkMenuItem     *menuitem,
                                         gpointer         user_data);
 
 void
+on_viewPresent_activate                (GtkMenuItem     *menuitem,
+                                        gpointer         user_data);
+
+void
 on_optionsButtonMappings_activate      (GtkMenuItem     *menuitem,
                                         gpointer         user_data);
 
@@ -706,3 +710,7 @@ on_optionsLegacyPDFExport_activate     (GtkMenuItem     *menuitem,
 void
 on_optionsLayersPDFExport_activate     (GtkMenuItem     *menuitem,
                                         gpointer         user_data);
+
+gint
+on_presentation_starts                 (gpointer data);
+  

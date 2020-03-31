@@ -1394,7 +1394,7 @@ gboolean bgpdf_scheduler_callback(gpointer data)
   pdfpage = poppler_document_get_page(bgpdf.document, req->pageno-1);
   if (pdfpage) {
 //    printf("DEBUG: Processing request for page %d at %f dpi\n", req->pageno, req->dpi);
-    set_cursor_busy(TRUE);
+    //set_cursor_busy(TRUE);
     poppler_page_get_size(pdfpage, &width, &height);
     scaled_width = (int) (req->dpi * width/72);
     scaled_height = (int) (req->dpi * height/72);
@@ -1419,7 +1419,7 @@ gboolean bgpdf_scheduler_callback(gpointer data)
                 req->dpi/72, 0, pixbuf);
     }
     g_object_unref(pdfpage);
-    set_cursor_busy(FALSE);
+    //set_cursor_busy(FALSE);
   }
 
   // process the generated pixbuf...
@@ -1465,7 +1465,7 @@ gboolean add_bgpdf_request(int pageno, double zoom)
   req = g_new(struct BgPdfRequest, 1);
   req->pageno = pageno;
   req->dpi = 72*zoom;
-//  printf("DEBUG: Enqueuing request for page %d at %f dpi\n", pageno, req->dpi);
+  //printf("DEBUG: Enqueuing request for page %d at %f dpi\n", pageno, req->dpi);
 
   // cancel any request this may supersede
   for (list = bgpdf.requests; list != NULL; ) {

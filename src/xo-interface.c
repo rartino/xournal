@@ -75,6 +75,7 @@ create_winMain (void)
   GtkWidget *viewOnePage;
   GtkWidget *separator20;
   GtkWidget *viewFullscreen;
+  GtkWidget *viewPresent;
   GtkWidget *separator4;
   GtkWidget *menuViewZoom;
   GtkWidget *menuViewZoom_menu;
@@ -297,6 +298,7 @@ create_winMain (void)
   GtkWidget *buttonZoomSet;
   GtkWidget *tmp_image;
   GtkWidget *buttonFullscreen;
+  GtkWidget *buttonPresent;  
   GtkWidget *toolbarPen;
   GSList *buttonPen_group = NULL;
   GtkWidget *buttonPen;
@@ -565,6 +567,13 @@ create_winMain (void)
                               GDK_F11, (GdkModifierType) 0,
                               GTK_ACCEL_VISIBLE);
 
+  viewPresent = gtk_check_menu_item_new_with_mnemonic (_("Present"));
+  gtk_widget_show (viewPresent);
+  gtk_container_add (GTK_CONTAINER (menuView_menu), viewPresent);
+  gtk_widget_add_accelerator (viewPresent, "activate", accel_group,
+                              GDK_F12, (GdkModifierType) 0,
+                              GTK_ACCEL_VISIBLE);
+  
   separator4 = gtk_separator_menu_item_new ();
   gtk_widget_show (separator4);
   gtk_container_add (GTK_CONTAINER (menuView_menu), separator4);
@@ -1699,6 +1708,15 @@ create_winMain (void)
   gtk_container_add (GTK_CONTAINER (toolbarMain), buttonFullscreen);
   gtk_tool_item_set_tooltip (GTK_TOOL_ITEM (buttonFullscreen), tooltips, _("Toggle Fullscreen"), NULL);
 
+  buttonPresent = (GtkWidget*) gtk_toggle_tool_button_new ();
+  gtk_tool_button_set_label (GTK_TOOL_BUTTON (buttonPresent), "");
+  tmp_image = create_pixmap (winMain, "fullscreen.png");
+  gtk_widget_show (tmp_image);
+  gtk_tool_button_set_icon_widget (GTK_TOOL_BUTTON (buttonPresent), tmp_image);
+  gtk_widget_show (buttonPresent);
+  gtk_container_add (GTK_CONTAINER (toolbarMain), buttonPresent);
+  gtk_tool_item_set_tooltip (GTK_TOOL_ITEM (buttonPresent), tooltips, _("Toggle Present"), NULL);
+  
   toolbarPen = gtk_toolbar_new ();
   gtk_widget_show (toolbarPen);
   gtk_box_pack_start (GTK_BOX (vboxMain), toolbarPen, FALSE, FALSE, 0);
@@ -2205,6 +2223,9 @@ create_winMain (void)
   g_signal_connect ((gpointer) viewFullscreen, "activate",
                     G_CALLBACK (on_viewFullscreen_activate),
                     NULL);
+  g_signal_connect ((gpointer) viewPresent, "activate",
+                    G_CALLBACK (on_viewPresent_activate),
+                    NULL);  
   g_signal_connect ((gpointer) viewZoomIn, "activate",
                     G_CALLBACK (on_viewZoomIn_activate),
                     NULL);
@@ -2622,6 +2643,9 @@ create_winMain (void)
   g_signal_connect ((gpointer) buttonFullscreen, "toggled",
                     G_CALLBACK (on_viewFullscreen_activate),
                     NULL);
+  g_signal_connect ((gpointer) buttonPresent, "toggled",
+                    G_CALLBACK (on_viewPresent_activate),
+                    NULL);
   g_signal_connect ((gpointer) buttonPen, "toggled",
                     G_CALLBACK (on_toolsPen_activate),
                     NULL);
@@ -2762,6 +2786,7 @@ create_winMain (void)
   GLADE_HOOKUP_OBJECT (winMain, viewOnePage, "viewOnePage");
   GLADE_HOOKUP_OBJECT (winMain, separator20, "separator20");
   GLADE_HOOKUP_OBJECT (winMain, viewFullscreen, "viewFullscreen");
+  GLADE_HOOKUP_OBJECT (winMain, viewPresent, "viewPresent");  
   GLADE_HOOKUP_OBJECT (winMain, separator4, "separator4");
   GLADE_HOOKUP_OBJECT (winMain, menuViewZoom, "menuViewZoom");
   GLADE_HOOKUP_OBJECT (winMain, menuViewZoom_menu, "menuViewZoom_menu");
@@ -2970,6 +2995,7 @@ create_winMain (void)
   GLADE_HOOKUP_OBJECT (winMain, buttonNormalSize, "buttonNormalSize");
   GLADE_HOOKUP_OBJECT (winMain, buttonZoomSet, "buttonZoomSet");
   GLADE_HOOKUP_OBJECT (winMain, buttonFullscreen, "buttonFullscreen");
+  GLADE_HOOKUP_OBJECT (winMain, buttonPresent, "buttonPresent");  
   GLADE_HOOKUP_OBJECT (winMain, toolbarPen, "toolbarPen");
   GLADE_HOOKUP_OBJECT (winMain, buttonPen, "buttonPen");
   GLADE_HOOKUP_OBJECT (winMain, buttonEraser, "buttonEraser");

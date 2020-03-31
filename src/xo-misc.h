@@ -117,7 +117,11 @@ gboolean is_event_within_textview(GdkEventButton *event);
 
 void hide_unimplemented(void);
 
+void zoom_fit_to_screen(void);
+
 void do_fullscreen(gboolean active);
+
+void do_present(gboolean active);
 
 // fix GTK+ 2.16/2.17 issues with XInput events
 gboolean filter_extended_events(GtkWidget *widget, GdkEvent *event, gpointer user_data);

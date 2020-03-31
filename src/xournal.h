@@ -308,7 +308,7 @@ typedef struct UIData {
   char *filename;
   gchar *default_path; // default path for new notes
   gchar *default_image; // path for previous image
-  gboolean fullscreen, maximize_at_start;
+  gboolean fullscreen, present, maximize_at_start;
   int view_continuous; // view mode is continuous ?
   gboolean in_update_page_stuff; // semaphore to avoid scrollbar retroaction
   struct Selection *selection;

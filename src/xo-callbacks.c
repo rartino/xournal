@@ -2729,6 +2729,10 @@ on_canvas_key_press_event              (GtkWidget       *widget,
       do_fullscreen(FALSE);
       return TRUE;
     }
+    else if (ui.present) {
+      do_present(FALSE);
+      return TRUE;
+    }    
     else return FALSE;
   }
   
@@ -3272,8 +3276,30 @@ on_viewFullscreen_activate             (GtkMenuItem     *menuitem,
   else
     active = gtk_toggle_tool_button_get_active(GTK_TOGGLE_TOOL_BUTTON (menuitem));
 
+  if (ui.present) 
+    do_present(FALSE);
+  
   if (active == ui.fullscreen) return;
   do_fullscreen(active);
+}
+
+
+void
+on_viewPresent_activate                (GtkMenuItem     *menuitem,
+                                        gpointer         user_data)
+{
+  gboolean active;
+  
+  if (GTK_OBJECT_TYPE(menuitem) == GTK_TYPE_CHECK_MENU_ITEM)
+    active = gtk_check_menu_item_get_active(GTK_CHECK_MENU_ITEM (menuitem));
+  else
+    active = gtk_toggle_tool_button_get_active(GTK_TOGGLE_TOOL_BUTTON (menuitem));
+
+  if (ui.fullscreen) 
+    do_fullscreen(FALSE);
+  
+  if (active == ui.present) return;
+  do_present(active);
 }
 
 
@@ -3893,3 +3919,14 @@ on_optionsLayersPDFExport_activate     (GtkMenuItem     *menuitem,
   ui.exportpdf_layers = gtk_check_menu_item_get_active(GTK_CHECK_MENU_ITEM (menuitem));
 }
 
+gint
+on_presentation_starts                 (gpointer data)
+{
+  if(ui.present) {
+    zoom_fit_to_screen();
+  }
+  for(int i = 1; i<=journal.npages; i++) {  
+    add_bgpdf_request(i, ui.zoom);
+  }
+  return FALSE;
+}
