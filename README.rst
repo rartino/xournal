@@ -9,6 +9,7 @@ The official repository of Xournal is hosted at: http://xournal.sourceforge.net
 This fork contains the following changes:
 
 - A presentation view mode has been added that combines:
+  
   * Fullscreen mode
   * Single page view
   * Resizes canvas to max that fits both height and width
