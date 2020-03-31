@@ -22,7 +22,7 @@ This fork contains the following changes:
   * Create a new empty page as the next page in the pdf with alt+n
   * Delete the curent page with alt+d
   * Clear all drawings with alt+c (delete layer)
-  * Open the set zoom dialog with alt+z. With this shortcut one can use zoom-to-heigh and zoom-to-width while fullscreen mode is activated, so the correct zoom for fullscreen is used.
+  * Open the set zoom dialog with alt+z. 
     
 - Change of the dated-looking pen cursor into a normal pointer arrow.
 
