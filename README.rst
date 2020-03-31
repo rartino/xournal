@@ -8,6 +8,12 @@ The official repository of Xournal is hosted at: http://xournal.sourceforge.net
 
 This fork contains the following changes:
 
+- A presentation view mode has been added that combines:
+  * Fullscreen mode
+  * Single page view
+  * Resizes canvas to max that fits both height and width
+  * Pre-renders all pages (note: makes drawing stutter for a while when activating presentation view, but eliminates wait time when changing pages.)
+
 - A number of keyboard shortcuts have been added for changing colors and other featurs useful for presentations running in fullscreen:
 
   * Change colors with alt+<number>
