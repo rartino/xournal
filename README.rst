@@ -29,11 +29,21 @@ This fork contains the following changes:
 Installation on Ubuntu
 ----------------------
 
-* sudo apt build-dep xournal
-* ./autogen.sh
-* make
+.. code:: bash
 
-Resulting binary in: `src/xournal`
+  git clone https://github.com/rartino/xournal.git  
+  cd xournal
+  sudo apt build-dep xournal
+  ./autogen.sh
+  make
+
+Then execute the binary with
+
+.. code::
+	  
+  src/xournal
+  
+
 
 
 
